@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath GIMME GIMME.wsgi --log-file -
