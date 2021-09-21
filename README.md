@@ -1,3 +1,3 @@
 # GIMME
 
-A crowdfund
+A crowdfunding app from hell
