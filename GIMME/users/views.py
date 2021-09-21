@@ -39,3 +39,20 @@ class CustomUserDetail(APIView):
         user = self.get_object(pk)
         serializer = CustomUserSerializer(user)
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        users = self.get_object(pk)
+        data = request.data
+        serializer = CustomUserSerializer(
+            instance=users,
+            data=data,
+            partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+    def delete(self, request, pk, format=None):
+        users = self.get_object(pk)
+        users.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
