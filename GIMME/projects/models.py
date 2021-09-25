@@ -12,6 +12,7 @@ class Project(models.Model):
     date_created = models.DateTimeField()
     owner = models.CharField(max_length=200)
     comments = models.CharField(max_length=400, default='')
+    category = models.CharField(max_length=200, default="Uncategorized")
     owner = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,

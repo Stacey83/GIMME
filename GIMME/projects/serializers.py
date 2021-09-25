@@ -21,8 +21,9 @@ class ProjectSerializer(serializers.Serializer):
     is_open = serializers.BooleanField()
     date_created = serializers.DateTimeField()
     owner = serializers.ReadOnlyField(source='owner.id')
-    comments = serializers.CharField(max_length=400)
-
+    comments = serializers.CharField(max_length=400) 
+    category = serializers.CharField(max_length=200)
+    
     def create(self, validated_data):
         return Project.objects.create(**validated_data)
 
@@ -38,5 +39,6 @@ class ProjectDetailSerializer(ProjectSerializer):
         instance.date_created = validated_data.get('date_created', instance.date_created)
         instance.owner = validated_data.get('owner', instance.owner)
         instance.comments = validated_data.get('comments', instance.comments)
+        instance.category = validated_data.get('category', instance.category)
         instance.save()
         return instance
